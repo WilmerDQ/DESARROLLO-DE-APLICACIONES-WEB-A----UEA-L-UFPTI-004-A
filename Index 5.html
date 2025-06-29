@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería con Fotos Pungalá</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .galeria img {
+      max-width: 200px;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    .seleccionada {
+      border: 3px solid red;
+      box-shadow: 0 0 10px red;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Galería de Fotos Pungala</h1>
+    <div class="galeria" id="galeria">
+      <img src="foto1.jpg" alt="Foto 1">
+      <img src="foto2.jpg" alt="Foto 2">
+      <img src="foto3.jpg" alt="Foto 3">
+    </div>
+    <button id="eliminar">Eliminar Imagen Seleccionada</button>
+  </div>
+
+  <script>
+    const imagenes = document.querySelectorAll('.galeria img');
+    let seleccionada = null;
+
+    imagenes.forEach(img => {
+      img.addEventListener('click', () => {
+        if (seleccionada) {
+          seleccionada.classList.remove('seleccionada');
+        }
+        img.classList.add('seleccionada');
+        seleccionada = img;
+      });
+    });
+
+    document.getElementById('eliminar').addEventListener('click', () => {
+      if (seleccionada) {
+        seleccionada.remove();
+        seleccionada = null;
+      }
+    });
+  </script>
+</body>
+</html>
